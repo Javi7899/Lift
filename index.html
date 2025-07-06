@@ -3,125 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PowerFit | Gimnasio Premium</title>
+    <title>FITCORE | Entrenamiento Personalizado</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Navbar (Estilo Apple) -->
-    <nav>
-        <div class="navbar">
-            <a href="#" class="logo">
-                <img src="assets/icon.png" alt="PowerFit">
-                <span>POWERFIT</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#classes">Clases</a></li>
-                <li><a href="#trainers">Entrenadores</a></li>
-                <li><a href="#pricing">Precios</a></li>
-                <li><a href="#contact">Contacto</a></li>
-            </ul>
-            <button class="cta-button">Únete hoy</button>
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="logo">FIT<span>CORE</span></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn btn-login">Iniciar Sesión</button>
+                <button class="btn btn-primary">Regístrate</button>
+            </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section (Fullscreen) -->
-    <section class="hero">
+    <section class="hero" id="inicio">
         <div class="hero-content">
-            <h1>Transforma tu cuerpo. <span>Potencia tu mente.</span></h1>
-            <p>Equipo de última generación y entrenadores certificados.</p>
-            <a href="#pricing" class="cta-button">Empieza gratis por 7 días</a>
+            <h1>Transforma tu cuerpo, transforma tu vida</h1>
+            <p>Entrenamiento personalizado adaptado a tus necesidades y objetivos</p>
+            <button class="btn btn-primary btn-large">Empieza hoy</button>
         </div>
     </section>
 
-    <!-- Sección Clases (Estilo Tarjetas Apple) -->
-    <section id="classes" class="section-dark">
-        <h2>Nuestras Clases</h2>
-        <div class="grid-container">
-            <div class="card">
-                <i class="fas fa-dumbbell"></i>
-                <h3>CrossFit</h3>
-                <p>Sesiones de alta intensidad para todos los niveles.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-heartbeat"></i>
-                <h3>HIIT</h3>
-                <p>Quema grasa en menos tiempo con intervalos.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-spa"></i>
-                <h3>Yoga</h3>
-                <p>Flexibilidad y mindfulness en un solo lugar.</p>
+    <section class="evaluacion-section">
+        <div class="container">
+            <h2>Tu camino comienza con una evaluación completa</h2>
+            <p>Cada uno de nuestros servicios viene precedido de una sesión de evaluación inicial. En ella, realizaremos una entrevista para conocerte, saber de qué punto partimos (condición física, experiencia previa, lesiones...) y qué objetivos queremos marcarnos.</p>
+            <p>Tras ello, realizaremos una serie de test para valorar tu condición física y niveles de movilidad y fuerza articular, de forma que podamos adaptar al máximo el proceso de entrenamiento para la consecución de objetivos de forma segura y eficaz.</p>
+        </div>
+    </section>
+
+    <section class="services" id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <div class="card-overlay">
+                            <h3>Entrenamiento Personal 1 a 1 o Dúo</h3>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p>Sesiones presenciales en nuestro centro con un espacio exclusivo y todo el material necesario para la sesión. Entrenamiento completamente personalizado y adaptado a tus necesidades.</p>
+                        <button class="btn btn-outline">Más información</button>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <div class="card-overlay">
+                            <h3>Entrenamiento en Grupo Reducido</h3>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p>Sesiones en grupos reducidos (máximo 5 personas) para mantener la mejor calidad del entrenamiento, con posibilidad de adaptaciones individuales cuando sea necesario.</p>
+                        <button class="btn btn-outline">Más información</button>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1538805060514-97d9cc17730c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <div class="card-overlay">
+                            <h3>Entrenamiento Online</h3>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p>Planificación mensual mediante nuestra app, con adaptaciones semanales según tu disponibilidad y evolución. Revisión mensual para valorar progresos y ajustar el plan.</p>
+                        <button class="btn btn-outline">Más información</button>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1552674605-db6ffd4facb5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <div class="card-overlay">
+                            <h3>Entrenamiento Híbrido</h3>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p>Combina entrenamientos presenciales con sesiones programadas en nuestra app. Hasta 2 sesiones extra semanales adaptadas a tu tiempo y material disponible.</p>
+                        <button class="btn btn-outline">Más información</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección Entrenadores -->
-    <section id="trainers" class="section-light">
-        <h2>Conoce a nuestros entrenadores</h2>
-        <div class="trainers-grid">
-            <div class="trainer">
-                <img src="assets/trainers/trainer1.jpg" alt="Entrenador">
-                <h3>Marcos Rodríguez</h3>
-                <p>Especialista en fuerza y conditioning.</p>
-            </div>
-            <div class="trainer">
-                <img src="assets/trainers/trainer2.jpg" alt="Entrenadora">
-                <h3>Laura Méndez</h3>
-                <p>Experta en nutrición deportiva.</p>
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">¿Por qué elegirnos?</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <i class="fas fa-user-md"></i>
+                    <h3>Profesionales Certificados</h3>
+                    <p>Nuestro equipo está formado por profesionales con certificaciones internacionales y años de experiencia.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Enfoque Científico</h3>
+                    <p>Métodos basados en la última evidencia científica para obtener resultados reales y duraderos.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Tecnología Integrada</h3>
+                    <p>App exclusiva con seguimiento de progresos, planificación de entrenamientos y nutrición.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Enfoque Personal</h3>
+                    <p>Cada cliente es único y merece un plan adaptado a sus necesidades específicas.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección Precios (Estilo Apple) -->
-    <section id="pricing" class="section-dark">
-        <h2>Planes de membresía</h2>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3>Básico</h3>
-                <p class="price">$29<span>/mes</span></p>
+    <section class="testimonials" id="nosotros">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial active">
+                    <p>"En solo 3 meses he conseguido resultados que no logré en años por mi cuenta. El enfoque personalizado marca la diferencia."</p>
+                    <div class="author">- Marta G., 34 años</div>
+                </div>
+                <div class="testimonial">
+                    <p>"La combinación de entrenamiento presencial y online me permite mantener la constancia incluso cuando viajo por trabajo."</p>
+                    <div class="author">- Carlos R., 42 años</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Después de mi lesión, pensé que no podría volver a entrenar. Gracias a su enfoque cuidadoso, estoy más fuerte que nunca."</p>
+                    <div class="author">- Ana L., 28 años</div>
+                </div>
+            </div>
+            <div class="slider-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>¿Listo para comenzar tu transformación?</h2>
+            <p>Reserva tu evaluación inicial gratuita y descubre cómo podemos ayudarte a alcanzar tus objetivos.</p>
+            <button class="btn btn-primary btn-large">Reservar Evaluación</button>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <div class="logo">FIT<span>CORE</span></div>
+                <p>Transformando vidas a través del movimiento.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Servicios</h3>
                 <ul>
-                    <li>Acceso a equipos</li>
-                    <li>2 clases grupales/semana</li>
+                    <li><a href="#">Entrenamiento Personal</a></li>
+                    <li><a href="#">Grupos Reducidos</a></li>
+                    <li><a href="#">Entrenamiento Online</a></li>
+                    <li><a href="#">Plan Híbrido</a></li>
                 </ul>
-                <button class="outline-button">Elegir</button>
             </div>
-            <div class="pricing-card highlighted">
-                <h3>Premium</h3>
-                <p class="price">$59<span>/mes</span></p>
-                <ul>
-                    <li>Acceso ilimitado</li>
-                    <li>Clases personalizadas</li>
-                    <li>Nutrición incluida</li>
-                </ul>
-                <button class="cta-button">Recomendado</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer (Estilo minimalista) -->
-    <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Horario</h3>
-                <p>Lunes-Viernes: 5:00 AM - 11:00 PM</p>
-                <p>Weekend: 7:00 AM - 9:00 PM</p>
-            </div>
-            <div class="footer-section">
+            <div class="footer-links">
                 <h3>Contacto</h3>
-                <p><i class="fas fa-phone"></i> +1 234 567 890</p>
-                <p><i class="fas fa-envelope"></i> hola@powerfit.com</p>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Calle del Ejercicio, 123</li>
+                    <li><i class="fas fa-phone"></i> +34 123 456 789</li>
+                    <li><i class="fas fa-envelope"></i> hola@fitcore.com</li>
+                </ul>
             </div>
-            <div class="footer-section">
+            <div class="footer-social">
                 <h3>Síguenos</h3>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
-        <p class="copyright">© 2023 PowerFit. Todos los derechos reservados.</p>
+        <div class="footer-bottom">
+            <p>&copy; 2023 FITCORE. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
