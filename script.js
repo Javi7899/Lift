@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Testimonios Slider
-document.addEventListener('DOMContentLoaded', function() {
     const testimonials = document.querySelectorAll('.testimonial');
     const dots = document.querySelectorAll('.slider-dot');
     let currentTestimonial = 0;
@@ -45,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
         autoSlideInterval = setInterval(nextTestimonial, 5000);
     }
 
+    // Mostrar el primer testimonio
+    showTestimonial(0);
     startAutoSlide();
 
     // Pausar auto slide al hacer hover
@@ -54,12 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     slider.addEventListener('mouseleave', startAutoSlide);
-});
-    // Auto slide
-    setInterval(() => {
-        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-        showTestimonial(currentTestimonial);
-    }, 5000);
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -85,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
     serviceCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             const overlay = this.querySelector('.card-overlay');
-            overlay.style.backgroundColor = 'rgba(229, 9, 20, 0.7)';
+            overlay.style.backgroundColor = 'rgba(37, 211, 102, 0.7)';
         });
         
         card.addEventListener('mouseleave', function() {
@@ -99,9 +94,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     serviceButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // In a real implementation, this would open a modal with more details
             const serviceTitle = this.closest('.service-card').querySelector('h3').textContent;
             alert(`Más información sobre: ${serviceTitle}\n\nEsta funcionalidad abriría un modal con detalles completos del servicio en una implementación real.`);
         });
     });
 });
+
+// Función para mostrar/ocultar detalles del servicio
+function toggleServiceDetails(serviceId) {
+    const details = document.getElementById(`service-details-${serviceId}`);
+    if (details.style.display === 'block') {
+        details.style.display = 'none';
+    } else {
+        details.style.display = 'block';
+    }
+}
