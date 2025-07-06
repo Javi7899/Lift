@@ -364,16 +364,25 @@ p {
     margin-bottom: 15px;
 }
 
+/* Actualización de avatares genéricos */
 .author-avatar {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: #f0f0f0;
     margin-right: 20px;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: white;
 }
+
+.avatar-1 { background-color: #e50914; }
+.avatar-2 { background-color: #4285F4; }
+.avatar-3 { background-color: #34A853; }
+.avatar-4 { background-color: #FBBC05; }
+.avatar-5 { background-color: #673AB7; }
 
 .author-details {
     flex: 1;
