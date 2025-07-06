@@ -274,58 +274,196 @@ p {
     margin-bottom: 20px;
 }
 
-/* Testimonios */
+/* Testimonios - Estilo Apple TV */
 .testimonials {
-    padding: 80px 0;
-    background-color: white;
+    padding: 100px 0;
+    background-color: #f8f8f8;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(229,9,20,0.05) 0%, rgba(0,0,0,0) 50%);
+    z-index: 0;
+}
+
+.testimonials .container {
+    position: relative;
+    z-index: 1;
+}
+
+.section-title {
     text-align: center;
+    margin-bottom: 60px;
+    color: #333;
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .testimonials-slider {
-    max-width: 800px;
-    margin: 0 auto 30px;
+    max-width: 1200px;
+    margin: 0 auto;
     position: relative;
-    min-height: 200px;
 }
 
 .testimonial {
-    display: none;
-    animation: fadeIn 0.5s ease;
+    background-color: white;
+    border-radius: 18px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    margin: 0 20px;
+    opacity: 0;
+    transition: all 0.6s ease;
+    transform: scale(0.95);
+    position: absolute;
+    width: calc(100% - 40px);
+    top: 0;
 }
 
 .testimonial.active {
-    display: block;
+    opacity: 1;
+    transform: scale(1);
+    position: relative;
 }
 
-.testimonial p {
+.testimonial-content {
+    margin-bottom: 30px;
+}
+
+.testimonial-text {
     font-size: 1.3rem;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 25px;
     font-style: italic;
-    margin-bottom: 20px;
+    position: relative;
+    padding-left: 30px;
 }
 
-.author {
-    font-weight: 600;
-    color: #e50914;
+.testimonial-text::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -10px;
+    font-size: 4rem;
+    color: rgba(229, 9, 20, 0.1);
+    font-family: Georgia, serif;
+    line-height: 1;
 }
 
-.slider-dots {
+.author-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    margin-right: 20px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.author-details {
+    flex: 1;
+}
+
+.author-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.author-badge {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #666;
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+.stars {
+    color: #FFD700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.testimonial-date {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.slider-nav {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    margin-top: 40px;
 }
 
-.dot {
+.slider-dot {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #ccc;
+    background-color: #ddd;
+    margin: 0 8px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.dot.active {
+.slider-dot.active {
     background-color: #e50914;
+    transform: scale(1.2);
 }
 
+.google-reviews-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto 0;
+    padding: 15px 30px;
+    background-color: #4285F4;
+    color: white;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    max-width: 300px;
+    box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
+}
+
+.google-reviews-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(66, 133, 244, 0.4);
+}
+
+.google-reviews-btn i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+/* Animaciones */
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.testimonial.active {
+    animation: fadeInScale 0.6s ease forwards;
+}
 /* CTA Section */
 .cta-section {
     padding: 100px 0;
