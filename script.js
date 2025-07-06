@@ -10,10 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Testimonials slider
+    // Testimonios Slider
+document.addEventListener('DOMContentLoaded', function() {
     const testimonials = document.querySelectorAll('.testimonial');
-    const dots = document.querySelectorAll('.dot');
+    const dots = document.querySelectorAll('.slider-dot');
     let currentTestimonial = 0;
+    let autoSlideInterval;
 
     function showTestimonial(index) {
         testimonials.forEach(testimonial => testimonial.classList.remove('active'));
@@ -24,12 +26,35 @@ document.addEventListener('DOMContentLoaded', function() {
         currentTestimonial = index;
     }
 
+    function nextTestimonial() {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        showTestimonial(currentTestimonial);
+    }
+
+    // Click en los dots
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
+            clearInterval(autoSlideInterval);
             showTestimonial(index);
+            startAutoSlide();
         });
     });
 
+    // Iniciar auto slide
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextTestimonial, 5000);
+    }
+
+    startAutoSlide();
+
+    // Pausar auto slide al hacer hover
+    const slider = document.querySelector('.testimonials-slider');
+    slider.addEventListener('mouseenter', () => {
+        clearInterval(autoSlideInterval);
+    });
+
+    slider.addEventListener('mouseleave', startAutoSlide);
+});
     // Auto slide
     setInterval(() => {
         currentTestimonial = (currentTestimonial + 1) % testimonials.length;
