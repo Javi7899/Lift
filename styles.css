@@ -729,3 +729,69 @@ p {
         margin-bottom: 10px;
     }
 }
+/* Añade estas reglas al final de tu CSS */
+
+/* Detalles del servicio visible */
+.service-details.visible {
+    display: block;
+}
+
+/* Swipe para testimonios */
+.testimonials-slider {
+    touch-action: pan-y;
+    user-select: none;
+}
+
+@media (min-width: 769px) {
+    /* Solo permitir swipe en desktop */
+    .testimonials-slider {
+        overflow: hidden;
+    }
+    
+    /* Efecto hover más suave para desktop */
+    .service-card:hover .card-overlay {
+        background-color: rgba(37, 211, 102, 0.7);
+    }
+}
+
+/* Mejorar navbar en móvil */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 0;
+    }
+    
+    .navbar.scrolled {
+        padding: 10px 0;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .navbar.scrolled.visible {
+        transform: translateY(0);
+    }
+    
+    .navbar-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .logo {
+        order: 1;
+        margin-right: auto;
+    }
+    
+    .auth-buttons {
+        order: 2;
+        margin: 0;
+    }
+    
+    nav {
+        order: 3;
+        width: 100%;
+        margin-top: 15px;
+    }
+    
+    .nav-links {
+        justify-content: space-around;
+    }
+}
