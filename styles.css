@@ -906,3 +906,21 @@ p {
         padding: 20px;
     }
 }
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-image {
+        order: -1;
+        margin-bottom: 30px;
+    }
+    
+    .qualification {
+        flex-direction: column;
+    }
+    
+    .qualification i {
+        margin-bottom: 10px;
+    }
+}
