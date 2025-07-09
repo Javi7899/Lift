@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-// Carrusel de fotos - Versión mejorada para móviles
+// Carrusel de fotos - Versión optimizada para móviles
 document.addEventListener('DOMContentLoaded', function() {
     const track = document.querySelector('.carousel-track');
     const slides = Array.from(document.querySelectorAll('.carousel-slide'));
@@ -185,6 +185,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentTranslate = 0;
     let prevTranslate = 0;
     let animationID;
+    let touchMoved = false; // Para distinguir entre toque y deslizamiento
+    
+    // Optimización: Detectar si es móvil
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     // Crear indicadores si no existen
     if (!document.querySelector('.carousel-indicators')) {
@@ -229,9 +233,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function startAutoSlide() {
+        // En móviles, reducimos el intervalo para mejor rendimiento
+        const interval = isMobile ? 7000 : 5000;
         autoSlideInterval = setInterval(() => {
             nextSlide();
-        }, 5000);
+        }, interval);
     }
     
     function resetAutoSlide() {
@@ -239,36 +245,52 @@ document.addEventListener('DOMContentLoaded', function() {
         startAutoSlide();
     }
     
-    // Eventos de navegación
-    nextBtn.addEventListener('click', () => {
-        nextSlide();
+    // Eventos de navegación optimizados para móviles
+    function handleNavigation(direction) {
+        if (direction === 'next') nextSlide();
+        else prevSlide();
         resetAutoSlide();
-    });
+        
+        // Feedback táctil en móviles
+        if (isMobile) {
+            const btn = direction === 'next' ? nextBtn : prevBtn;
+            btn.classList.add('active-touch');
+            setTimeout(() => btn.classList.remove('active-touch'), 200);
+        }
+    }
     
-    prevBtn.addEventListener('click', () => {
-        prevSlide();
-        resetAutoSlide();
-    });
+    nextBtn.addEventListener('click', () => handleNavigation('next'));
+    prevBtn.addEventListener('click', () => handleNavigation('prev'));
     
-    // Eventos táctiles para móviles
+    // Eventos táctiles optimizados para móviles
     slides.forEach((slide, index) => {
-        // Evitar arrastre de imágenes
         slide.addEventListener('dragstart', (e) => e.preventDefault());
         
-        // Eventos táctiles
-        slide.addEventListener('touchstart', touchStart(index), { passive: false });
-        slide.addEventListener('touchend', touchEnd, { passive: false });
-        slide.addEventListener('touchmove', touchMove, { passive: false });
+        // Solo añadir eventos táctiles en móviles
+        if (isMobile) {
+            slide.addEventListener('touchstart', touchStart(index), { passive: true });
+            slide.addEventListener('touchend', touchEnd, { passive: true });
+            slide.addEventListener('touchmove', touchMove, { passive: false });
+            slide.addEventListener('click', (e) => {
+                if (touchMoved) {
+                    e.preventDefault();
+                    touchMoved = false;
+                }
+            }, { passive: true });
+        }
     });
     
-    // Eventos de ratón para desktop
-    track.addEventListener('mousedown', touchStart(0));
-    track.addEventListener('mouseup', touchEnd);
-    track.addEventListener('mouseleave', touchEnd);
-    track.addEventListener('mousemove', touchMove);
+    // Eventos de ratón solo en desktop
+    if (!isMobile) {
+        track.addEventListener('mousedown', touchStart(0));
+        track.addEventListener('mouseup', touchEnd);
+        track.addEventListener('mouseleave', touchEnd);
+        track.addEventListener('mousemove', touchMove);
+    }
     
     function touchStart(index) {
         return function(event) {
+            touchMoved = false;
             currentIndex = index;
             startPos = getPositionX(event);
             isDragging = true;
@@ -286,12 +308,17 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const movedBy = currentTranslate - prevTranslate;
         
-        if (movedBy < -100 && currentIndex < slides.length - 1) {
+        // Umbral más alto para móviles para evitar cambios accidentales
+        const threshold = isMobile ? 50 : 100;
+        
+        if (movedBy < -threshold && currentIndex < slides.length - 1) {
             currentIndex += 1;
+            touchMoved = true;
         }
         
-        if (movedBy > 100 && currentIndex > 0) {
+        if (movedBy > threshold && currentIndex > 0) {
             currentIndex -= 1;
+            touchMoved = true;
         }
         
         setPositionByIndex();
@@ -301,8 +328,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function touchMove(event) {
         if (!isDragging) return;
+        touchMoved = true;
         const currentPosition = getPositionX(event);
         currentTranslate = prevTranslate + currentPosition - startPos;
+        
+        // Limitar el desplazamiento para mejor rendimiento
+        if (isMobile) {
+            const maxDrag = track.offsetWidth * 0.3;
+            if (Math.abs(currentTranslate - prevTranslate) > maxDrag) {
+                currentTranslate = prevTranslate + (currentTranslate > prevTranslate ? maxDrag : -maxDrag);
+            }
+        }
     }
     
     function getPositionX(event) {
@@ -318,17 +354,22 @@ document.addEventListener('DOMContentLoaded', function() {
         currentTranslate = currentIndex * -track.offsetWidth;
         prevTranslate = currentTranslate;
         track.style.transform = `translateX(${currentTranslate}px)`;
-        track.style.transition = 'transform 0.5s ease';
+        track.style.transition = 'transform 0.3s ease-out'; // Transición más rápida para móviles
         
-        // Actualizar indicadores
         indicators.forEach((indicator, index) => {
             indicator.classList.toggle('active', index === currentIndex);
         });
     }
     
-    // Iniciar carrusel
+    // Iniciar carrusel con configuración optimizada
     updateCarousel();
-    startAutoSlide();
+    
+    // Retrasar inicio del auto-slide para móviles
+    if (isMobile) {
+        setTimeout(startAutoSlide, 1000);
+    } else {
+        startAutoSlide();
+    }
     
     // Pausar al interactuar
     track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
@@ -336,8 +377,21 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isDragging) startAutoSlide();
     });
     
-    // Manejar redimensionamiento
+    // Manejar redimensionamiento con debounce para mejor rendimiento
+    let resizeTimeout;
     window.addEventListener('resize', () => {
-        setPositionByIndex();
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            setPositionByIndex();
+        }, 100);
+    });
+    
+    // Optimización: Liberar recursos cuando no es visible
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            clearInterval(autoSlideInterval);
+        } else {
+            resetAutoSlide();
+        }
     });
 });
