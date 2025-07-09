@@ -7,8 +7,8 @@
 }
 
 body {
-    background-color: #121212; /* Fondo negro */
-    color: #e0e0e0; /* Texto gris claro */
+    background-color: #121212;
+    color: #e0e0e0;
     line-height: 1.6;
 }
 
@@ -24,7 +24,7 @@ body {
     --dark-gray: #1a1a1a;
     --medium-gray: #252525;
     --light-gray: #333;
-    --gold: #D4AF37; /* Dorado */
+    --gold: #D4AF37;
     --gold-light: #FFD700;
     --gold-dark: #B8860B;
 }
@@ -450,6 +450,7 @@ p {
     height: auto;
     display: block;
 }
+
 /* Testimonios */
 .testimonials {
     padding: 100px 0;
@@ -906,6 +907,7 @@ p {
         padding: 20px;
     }
 }
+
 @media (max-width: 768px) {
     .about-content {
         grid-template-columns: 1fr;
@@ -924,6 +926,7 @@ p {
         margin-bottom: 10px;
     }
 }
+
 /* Sobre Mí - Estilos generales */
 .about-me {
     padding: 60px 0;
@@ -1030,7 +1033,9 @@ p {
     .qualifications-grid {
         grid-template-columns: 1fr;
     }
-    /* Sección Spotify */
+}
+
+/* Sección Spotify */
 .spotify-section {
     padding: 80px 0;
     background-color: var(--dark-gray);
@@ -1072,13 +1077,13 @@ p {
     border-radius: 10px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     border: 2px solid var(--gold);
-    aspect-ratio: 16/9; /* Relación de aspecto fija */
+    aspect-ratio: 16/9;
 }
 
 .carousel-track {
     display: flex;
     transition: transform 0.5s ease;
-    height: 100%; /* Altura flexible */
+    height: 100%;
 }
 
 .carousel-slide {
@@ -1194,6 +1199,7 @@ p {
         padding: 0 10px;
     }
 }
+
 /* Responsive */
 @media (max-width: 768px) {
     .spotify-section {
@@ -1236,18 +1242,14 @@ p {
         border-width: 1px;
     }
 }
-    
-    .qualification-card {
-        padding: 20px;
-    }
-}
+
 /* Carrusel optimizado para móviles */
 .gallery-carousel {
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 10px;
-    touch-action: pan-y; /* Mejorar desplazamiento táctil */
+    touch-action: pan-y;
 }
 
 .carousel-container {
@@ -1256,21 +1258,21 @@ p {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     border: 2px solid var(--gold);
     aspect-ratio: 16/9;
-    -webkit-overflow-scrolling: touch; /* Suavizar scrolling en iOS */
+    -webkit-overflow-scrolling: touch;
 }
 
 .carousel-track {
     display: flex;
-    transition: transform 0.3s ease-out; /* Transición más rápida */
+    transition: transform 0.3s ease-out;
     height: 100%;
-    will-change: transform; /* Optimización para GPU */
+    will-change: transform;
 }
 
 .carousel-slide {
     min-width: 100%;
     position: relative;
     flex-shrink: 0;
-    user-select: none; /* Evitar selección de texto al deslizar */
+    user-select: none;
 }
 
 .carousel-slide img {
@@ -1278,7 +1280,7 @@ p {
     height: 100%;
     object-fit: cover;
     display: block;
-    pointer-events: none; /* Mejorar rendimiento táctil */
+    pointer-events: none;
 }
 
 /* Botones optimizados para móviles */
@@ -1301,7 +1303,7 @@ p {
     transition: all 0.2s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     opacity: 0.9;
-    touch-action: manipulation; /* Evitar retardo en toques */
+    touch-action: manipulation;
 }
 
 .carousel-btn:active {
@@ -1399,7 +1401,7 @@ p {
     }
     
     .carousel-container {
-        aspect-ratio: 4/3; /* Relación más cuadrada para móviles */
+        aspect-ratio: 4/3;
     }
 }
 
@@ -1417,6 +1419,7 @@ p {
         transition: none;
     }
 }
+
 /* Añade esto al final de tu archivo CSS */
 .calculator-section {
     padding: 80px 0;
