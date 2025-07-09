@@ -168,30 +168,41 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-// Carrusel de fotos
+// Carrusel de fotos - Versión mejorada para móviles
 document.addEventListener('DOMContentLoaded', function() {
     const track = document.querySelector('.carousel-track');
     const slides = Array.from(document.querySelectorAll('.carousel-slide'));
     const nextBtn = document.querySelector('.next-btn');
     const prevBtn = document.querySelector('.prev-btn');
-    const indicatorsContainer = document.createElement('div');
-    indicatorsContainer.className = 'carousel-indicators';
+    const indicatorsContainer = document.querySelector('.carousel-indicators') || document.createElement('div');
     
-    // Crear indicadores
-    slides.forEach((slide, index) => {
-        const indicator = document.createElement('div');
-        indicator.className = 'carousel-indicator';
-        if (index === 0) indicator.classList.add('active');
-        indicator.addEventListener('click', () => goToSlide(index));
-        indicatorsContainer.appendChild(indicator);
-    });
-    
-    document.querySelector('.gallery-carousel').appendChild(indicatorsContainer);
-    const indicators = Array.from(document.querySelectorAll('.carousel-indicator'));
-    
+    // Configuración del carrusel
     let currentIndex = 0;
     const slideCount = slides.length;
+    let autoSlideInterval;
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID;
     
+    // Crear indicadores si no existen
+    if (!document.querySelector('.carousel-indicators')) {
+        indicatorsContainer.className = 'carousel-indicators';
+        slides.forEach((_, index) => {
+            const indicator = document.createElement('button');
+            indicator.className = 'carousel-indicator';
+            indicator.setAttribute('aria-label', `Ir a la diapositiva ${index + 1}`);
+            if (index === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(index));
+            indicatorsContainer.appendChild(indicator);
+        });
+        document.querySelector('.gallery-carousel').appendChild(indicatorsContainer);
+    }
+    
+    const indicators = Array.from(document.querySelectorAll('.carousel-indicator'));
+    
+    // Funciones del carrusel
     function updateCarousel() {
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
         
@@ -214,40 +225,119 @@ document.addEventListener('DOMContentLoaded', function() {
     function goToSlide(index) {
         currentIndex = index;
         updateCarousel();
+        resetAutoSlide();
     }
     
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+            nextSlide();
+        }, 5000);
+    }
     
-    // Auto-avance cada 5 segundos
-    let autoSlideInterval = setInterval(nextSlide, 5000);
-    
-    // Pausar al interactuar
-    const carousel = document.querySelector('.gallery-carousel');
-    carousel.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-    carousel.addEventListener('mouseleave', () => {
+    function resetAutoSlide() {
         clearInterval(autoSlideInterval);
-        autoSlideInterval = setInterval(nextSlide, 5000);
+        startAutoSlide();
+    }
+    
+    // Eventos de navegación
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetAutoSlide();
     });
     
-    // Soporte para touch
-    let touchStartX = 0;
-    let touchEndX = 0;
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetAutoSlide();
+    });
     
-    track.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        clearInterval(autoSlideInterval);
-    }, {passive: true});
+    // Eventos táctiles para móviles
+    slides.forEach((slide, index) => {
+        // Evitar arrastre de imágenes
+        slide.addEventListener('dragstart', (e) => e.preventDefault());
+        
+        // Eventos táctiles
+        slide.addEventListener('touchstart', touchStart(index), { passive: false });
+        slide.addEventListener('touchend', touchEnd, { passive: false });
+        slide.addEventListener('touchmove', touchMove, { passive: false });
+    });
     
-    track.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        autoSlideInterval = setInterval(nextSlide, 5000);
-    }, {passive: true});
+    // Eventos de ratón para desktop
+    track.addEventListener('mousedown', touchStart(0));
+    track.addEventListener('mouseup', touchEnd);
+    track.addEventListener('mouseleave', touchEnd);
+    track.addEventListener('mousemove', touchMove);
     
-    function handleSwipe() {
-        const difference = touchStartX - touchEndX;
-        if (difference > 50) nextSlide(); // Deslizar izquierda
-        if (difference < -50) prevSlide(); // Deslizar derecha
+    function touchStart(index) {
+        return function(event) {
+            currentIndex = index;
+            startPos = getPositionX(event);
+            isDragging = true;
+            animationID = requestAnimationFrame(animation);
+            track.style.cursor = 'grabbing';
+            track.style.transition = 'none';
+            clearInterval(autoSlideInterval);
+        }
     }
+    
+    function touchEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        cancelAnimationFrame(animationID);
+        
+        const movedBy = currentTranslate - prevTranslate;
+        
+        if (movedBy < -100 && currentIndex < slides.length - 1) {
+            currentIndex += 1;
+        }
+        
+        if (movedBy > 100 && currentIndex > 0) {
+            currentIndex -= 1;
+        }
+        
+        setPositionByIndex();
+        track.style.cursor = 'grab';
+        startAutoSlide();
+    }
+    
+    function touchMove(event) {
+        if (!isDragging) return;
+        const currentPosition = getPositionX(event);
+        currentTranslate = prevTranslate + currentPosition - startPos;
+    }
+    
+    function getPositionX(event) {
+        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    }
+    
+    function animation() {
+        track.style.transform = `translateX(${currentTranslate}px)`;
+        if (isDragging) requestAnimationFrame(animation);
+    }
+    
+    function setPositionByIndex() {
+        currentTranslate = currentIndex * -track.offsetWidth;
+        prevTranslate = currentTranslate;
+        track.style.transform = `translateX(${currentTranslate}px)`;
+        track.style.transition = 'transform 0.5s ease';
+        
+        // Actualizar indicadores
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    // Iniciar carrusel
+    updateCarousel();
+    startAutoSlide();
+    
+    // Pausar al interactuar
+    track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+    track.addEventListener('mouseleave', () => {
+        if (!isDragging) startAutoSlide();
+    });
+    
+    // Manejar redimensionamiento
+    window.addEventListener('resize', () => {
+        setPositionByIndex();
+    });
 });
