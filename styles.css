@@ -924,3 +924,114 @@ p {
         margin-bottom: 10px;
     }
 }
+/* Sobre Mí - Estilos generales */
+.about-me {
+    padding: 60px 0;
+    background-color: var(--medium-gray);
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-image {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--gold);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.qualifications-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.qualification-card {
+    background-color: var(--dark-gray);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--gold);
+    display: flex;
+    align-items: flex-start;
+}
+
+.qualification-card i {
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-right: 15px;
+    margin-top: 3px;
+}
+
+.qualification-card h3 {
+    font-size: 1.1rem;
+    color: white;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.institution {
+    color: var(--gold);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Tablet pequeña (ej. 600px en adelante) */
+@media (min-width: 600px) {
+    .qualifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .qualification-card {
+        padding: 15px;
+    }
+}
+
+/* Desktop (ej. 992px en adelante) */
+@media (min-width: 992px) {
+    .about-content {
+        flex-direction: row;
+        align-items: center;
+        gap: 40px;
+    }
+    
+    .about-image {
+        max-width: 400px;
+        margin: 0;
+        flex: 1;
+    }
+    
+    .about-text {
+        flex: 1;
+    }
+    
+    .intro-text {
+        text-align: left;
+        font-size: 1.2rem;
+    }
+    
+    .qualifications-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .qualification-card {
+        padding: 20px;
+    }
+}
