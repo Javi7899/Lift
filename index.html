@@ -425,7 +425,134 @@
             </div>
         </div>
     </section>
-
+<!-- Añade esto después de la sección de servicios -->
+<section class="calculator-section" id="calculadora">
+    <div class="container">
+        <h2 class="section-title">Calculadora de IMC y PMC</h2>
+        <p class="section-subtitle">Descubre tu Índice de Masa Corporal y estima tu Porcentaje de Masa Corporal</p>
+        
+        <div class="calculator-container">
+            <div class="calculator-form">
+                <div class="form-group">
+                    <label for="gender">Género:</label>
+                    <select id="gender" class="form-input">
+                        <option value="male">Hombre</option>
+                        <option value="female">Mujer</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Edad:</label>
+                    <input type="number" id="age" class="form-input" min="15" max="100" placeholder="Años">
+                </div>
+                
+                <div class="form-group">
+                    <label for="height">Altura (cm):</label>
+                    <input type="number" id="height" class="form-input" min="100" max="250" placeholder="Centímetros">
+                </div>
+                
+                <div class="form-group">
+                    <label for="weight">Peso (kg):</label>
+                    <input type="number" id="weight" class="form-input" min="30" max="200" placeholder="Kilogramos">
+                </div>
+                
+                <div class="form-group">
+                    <label for="neck">Cuello (cm):</label>
+                    <input type="number" id="neck" class="form-input" min="20" max="60" placeholder="Opcional para PMC">
+                </div>
+                
+                <div class="form-group">
+                    <label for="waist">Cintura (cm):</label>
+                    <input type="number" id="waist" class="form-input" min="50" max="200" placeholder="Opcional para PMC">
+                </div>
+                
+                <div class="form-group" id="hip-group" style="display: none;">
+                    <label for="hip">Cadera (cm):</label>
+                    <input type="number" id="hip" class="form-input" min="60" max="200" placeholder="Solo mujeres">
+                </div>
+                
+                <button id="calculate-btn" class="btn btn-primary btn-large">Calcular</button>
+                <button id="reset-btn" class="btn btn-outline">Limpiar</button>
+            </div>
+            
+            <div class="calculator-results">
+                <div class="result-card">
+                    <h3>Índice de Masa Corporal (IMC)</h3>
+                    <div class="result-value" id="bmi-value">--</div>
+                    <div class="result-category" id="bmi-category">Introduce tus datos</div>
+                    <div class="result-bar">
+                        <div class="bar-segment underweight" title="Bajo peso"></div>
+                        <div class="bar-segment normal" title="Peso normal"></div>
+                        <div class="bar-segment overweight" title="Sobrepeso"></div>
+                        <div class="bar-segment obese" title="Obesidad"></div>
+                        <div class="bar-indicator" id="bmi-indicator"></div>
+                    </div>
+                    <p class="result-info">El IMC es una medida de tu peso en relación con tu altura.</p>
+                </div>
+                
+                <div class="result-card">
+                    <h3>Porcentaje de Masa Corporal (PMC)</h3>
+                    <div class="result-value" id="bfp-value">--</div>
+                    <div class="result-category" id="bfp-category">Introduce medidas adicionales</div>
+                    <div class="result-bar">
+                        <div class="bar-segment essential" title="Esencial"></div>
+                        <div class="bar-segment athlete" title="Atleta"></div>
+                        <div class="bar-segment fitness" title="Fitness"></div>
+                        <div class="bar-segment average" title="Promedio"></div>
+                        <div class="bar-segment high" title="Alto"></div>
+                        <div class="bar-indicator" id="bfp-indicator"></div>
+                    </div>
+                    <p class="result-info">El PMC estima el porcentaje de grasa en tu cuerpo.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="calculator-info">
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> Sobre el IMC</h3>
+                <p>El Índice de Masa Corporal (IMC) es una medida que relaciona tu peso con tu altura. Se calcula dividiendo tu peso en kilogramos por el cuadrado de tu altura en metros.</p>
+                <ul class="bmi-categories">
+                    <li><span class="category-color underweight"></span> Bajo peso: &lt;18.5</li>
+                    <li><span class="category-color normal"></span> Normal: 18.5-24.9</li>
+                    <li><span class="category-color overweight"></span> Sobrepeso: 25-29.9</li>
+                    <li><span class="category-color obese"></span> Obesidad: ≥30</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> Sobre el PMC</h3>
+                <p>El Porcentaje de Masa Corporal (PMC) estima la proporción de grasa en tu cuerpo. Usamos la fórmula de la Marina de EE.UU. que considera medidas de cuello, cintura y cadera.</p>
+                <div class="bfp-tables">
+                    <div class="bfp-table">
+                        <h4>Hombres</h4>
+                        <ul>
+                            <li><span class="category-color essential"></span> Esencial: 2-5%</li>
+                            <li><span class="category-color athlete"></span> Atleta: 6-13%</li>
+                            <li><span class="category-color fitness"></span> Fitness: 14-17%</li>
+                            <li><span class="category-color average"></span> Promedio: 18-24%</li>
+                            <li><span class="category-color high"></span> Alto: ≥25%</li>
+                        </ul>
+                    </div>
+                    <div class="bfp-table">
+                        <h4>Mujeres</h4>
+                        <ul>
+                            <li><span class="category-color essential"></span> Esencial: 10-13%</li>
+                            <li><span class="category-color athlete"></span> Atleta: 14-20%</li>
+                            <li><span class="category-color fitness"></span> Fitness: 21-24%</li>
+                            <li><span class="category-color average"></span> Promedio: 25-31%</li>
+                            <li><span class="category-color high"></span> Alto: ≥32%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="calculator-disclaimer">
+            <p><strong>Nota:</strong> Estas calculadoras proporcionan estimaciones basadas en fórmulas estándar. Para una evaluación precisa de tu composición corporal, consulta con nuestros especialistas en LIFT Studio.</p>
+            <a href="#contacto" class="btn btn-primary">Contacta con nosotros</a>
+        </div>
+    </div>
+</section>
     <footer class="footer-simplified">
         <div class="container">
             <p>&copy; 2025 LIFT Studio. Todos los derechos reservados.</p>
