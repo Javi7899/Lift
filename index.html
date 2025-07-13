@@ -23,11 +23,11 @@
                 <ul class="nav-links">
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#sobre-mi">Sobre Mí</a></li>
-                    <li><a href="#musica">Música para tu Entrenamiento</a></li>
-                    <li><a href="#instalaciones">Nuestras Instalaciones</a></li>
-                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#quien-somos">Quien Somos</a></li>
+                    <li><a href="#nuestro-centro">Nuestro Centro</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
                     <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#musica">Música para tu Entrenamiento</a></li>
                 </ul>
             </nav>
         </div>
@@ -55,7 +55,6 @@
                         <div class="service-details" id="service-details-1">
                             <p><strong>Incluye:</strong> Evaluación inicial completa, plan personalizado, seguimiento semanal, ajustes según progreso, acceso a app de seguimiento.</p>
                             <p><strong>Duración:</strong> Sesiones de 50-60 minutos</p>
-                            <p><strong>Precio:</strong> Desde 60€/sesión (packs disponibles)</p>
                         </div>
                         <div class="card-buttons">
                             <button class="btn btn-info" onclick="toggleServiceDetails(1)">Info</button>
@@ -75,7 +74,6 @@
                         <div class="service-details" id="service-details-2">
                             <p><strong>Incluye:</strong> Evaluación inicial, plan grupal con adaptaciones individuales, seguimiento mensual, ambiente motivador.</p>
                             <p><strong>Duración:</strong> Sesiones de 60 minutos</p>
-                            <p><strong>Precio:</strong> Desde 35€/sesión (bonos disponibles)</p>
                         </div>
                         <div class="card-buttons">
                             <button class="btn btn-info" onclick="toggleServiceDetails(2)">Info</button>
@@ -95,7 +93,6 @@
                         <div class="service-details" id="service-details-3">
                             <p><strong>Incluye:</strong> Planificación mensual personalizada, videollamada inicial, seguimiento semanal, acceso premium a la app, vídeos demostrativos.</p>
                             <p><strong>Duración:</strong> Flexible según tus horarios</p>
-                            <p><strong>Precio:</strong> Desde 120€/mes</p>
                         </div>
                         <div class="card-buttons">
                             <button class="btn btn-info" onclick="toggleServiceDetails(3)">Info</button>
@@ -111,11 +108,10 @@
                         </div>
                     </div>
                     <div class="card-content">
-                        <p>Combina entrenamientos presenciales con sesiones programadas en nuestra app. Hasta 2 sesiones extra semanales adaptadas a tu tiempo y material disponible.</p>
+                        <p>Acompaña los entrenamientos presenciales con sesiones programadas online. Hasta 2 sesiones semanales adaptadas a tu tiempo y material disponible por App.</p>
                         <div class="service-details" id="service-details-4">
                             <p><strong>Incluye:</strong> 1-2 sesiones presenciales semanales, planificación online para sesiones adicionales, seguimiento completo, acceso a app premium.</p>
                             <p><strong>Duración:</strong> Sesiones de 50-60 minutos (presencial) + flexible (online)</p>
-                            <p><strong>Precio:</strong> Desde 180€/mes</p>
                         </div>
                         <div class="card-buttons">
                             <button class="btn btn-info" onclick="toggleServiceDetails(4)">Info</button>
@@ -127,32 +123,9 @@
         </div>
     </section>
 
-    <section class="features">
+    <section class="about-me" id="quien-somos">
         <div class="container">
-            <h2 class="section-title">¿Por qué elegirnos?</h2>
-            <div class="features-grid">
-                <div class="feature">
-                    <i class="fas fa-user-md"></i>
-                    <h3>Personal Cualificado</h3>
-                    <p>Nuestro equipo está formado por profesionales actualizados con años de experiencia.</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-heartbeat"></i>
-                    <h3>Enfoque Científico</h3>
-                    <p>Métodos basados en la última evidencia científica para obtener resultados reales y duraderos.</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-hand-holding-heart"></i>
-                    <h3>Enfoque Personal</h3>
-                    <p>Cada cliente es único y merece un plan adaptado a sus necesidades específicas.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="about-me" id="sobre-mi">
-        <div class="container">
-            <h2 class="section-title">Sobre Mí</h2>
+            <h2 class="section-title">Quien Somos</h2>
             <div class="about-content">
                 <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
@@ -160,6 +133,7 @@
                          loading="lazy">
                 </div>
                 <div class="about-text">
+                    <h3>Alejandro Ruiz</h3>
                     <p class="intro-text">Como profesional del entrenamiento personal y la readaptación física, mi enfoque se basa en una combinación de conocimiento científico y experiencia práctica para ofrecer los mejores resultados.</p>
                     
                     <div class="qualifications-grid">
@@ -200,32 +174,32 @@
         </div>
     </section>
 
-    <section class="spotify-section" id="musica">
+    <section class="features">
         <div class="container">
-            <h2 class="section-title">Música para tu Entrenamiento</h2>
-            <div class="spotify-player">
-                <iframe style="border-radius:12px" 
-                        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP?utm_source=generator&theme=0" 
-                        width="100%" 
-                        height="380" 
-                        frameBorder="0" 
-                        allowfullscreen="" 
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                        loading="lazy"></iframe>
-            </div>
-            <div class="spotify-link">
-                <a href="https://open.spotify.com/playlist/37i9dQZF1DX76Wlfdnj7AP" 
-                   target="_blank" 
-                   class="btn btn-primary">
-                    <i class="fab fa-spotify"></i> Abrir en Spotify
-                </a>
+            <h2 class="section-title">¿Por qué elegirnos?</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <i class="fas fa-user-md"></i>
+                    <h3>Personal Cualificado</h3>
+                    <p>Nuestro equipo está formado por profesionales con amplia formación, actualizados y con años de experiencia.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Enfoque Científico</h3>
+                    <p>Métodos basados en la última evidencia científica para obtener resultados reales y duraderos.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Enfoque Personal</h3>
+                    <p>Cada cliente es único y merece un plan adaptado a sus necesidades específicas.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="gallery-section" id="instalaciones">
+    <section class="gallery-section" id="nuestro-centro">
         <div class="container">
-            <h2 class="section-title">Nuestras Instalaciones</h2>
+            <h2 class="section-title">Nuestro Centro</h2>
             <div class="gallery-carousel">
                 <div class="carousel-container">
                     <div class="carousel-track">
@@ -266,9 +240,9 @@
         </div>
     </section>
 
-    <section class="testimonials" id="nosotros">
+    <section class="testimonials" id="testimonios">
         <div class="container">
-            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <h2 class="section-title">Testimonios</h2>
             <div class="testimonials-slider">
                 <div class="testimonial active">
                     <div class="testimonial-content">
@@ -377,50 +351,25 @@
         </div>
     </section>
 
-    <section class="cta-section">
+    <section class="spotify-section" id="musica">
         <div class="container">
-            <h2>¿Listo para comenzar tu transformación?</h2>
-            <p>Reserva tu evaluación inicial gratuita y descubre cómo podemos ayudarte a alcanzar tus objetivos.</p>
-            <button class="btn btn-primary btn-large">Reservar Evaluación</button>
-        </div>
-    </section>
-
-    <section class="contact-section" id="contacto">
-        <div class="container">
-            <h2 class="section-title">Contacto</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Información de contacto</h3>
-                    <ul>
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>C. de Tomás López, 11, Salamanca, 28009 Madrid</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <span>+34 615 201 626</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>ar.motionhealth@gmail.com</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-clock"></i>
-                            <span>Horario Flexible</span>
-                        </li>
-                    </ul>
-                    
-                    <h3>Síguenos en redes</h3>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.123365071445!2d-3.672851924018615!3d40.43103627143858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4228e9b2d3452d%3A0xfd26a9a5c1b4184e!2sC.%20de%20Tom%C3%A1s%20L%C3%B3pez%2C%2011%2C%20Salamanca%2C%2028009%20Madrid!5e0!3m2!1ses!2ses!4v1620000000000!5m2!1ses!2ses" allowfullscreen="" loading="lazy"></iframe>
-                </div>
+            <h2 class="section-title">Música para tu Entrenamiento</h2>
+            <div class="spotify-player">
+                <iframe style="border-radius:12px" 
+                        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="380" 
+                        frameBorder="0" 
+                        allowfullscreen="" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy"></iframe>
+            </div>
+            <div class="spotify-link">
+                <a href="https://open.spotify.com/playlist/37i9dQZF1DX76Wlfdnj7AP" 
+                   target="_blank" 
+                   class="btn btn-primary">
+                    <i class="fab fa-spotify"></i> Abrir en Spotify
+                </a>
             </div>
         </div>
     </section>
@@ -547,8 +496,47 @@
             </div>
             
             <div class="calculator-disclaimer">
-                <p><strong>Nota:</strong> Estas calculadoras proporcionan estimaciones basadas en fórmulas estándar. Para una evaluación precisa de tu composición corporal, consulta con nuestros especialistas en LIFT Studio.</p>
-                <a href="#contacto" class="btn btn-primary">Contacta con nosotros</a>
+                <p><strong>Nota:</strong> Esta calculadora proporciona estimaciones basadas en fórmulas estándar. Para una evaluación precisa de tu composición corporal consulta a un especialista.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Información de contacto</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>C. de Tomás López, 11, Salamanca, 28009 Madrid</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+34 615 201 626</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>ar.motionhealth@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Horario Flexible</span>
+                        </li>
+                    </ul>
+                    
+                    <h3>Síguenos en redes</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.123365071445!2d-3.672851924018615!3d40.43103627143858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4228e9b2d3452d%3A0xfd26a9a5c1b4184e!2sC.%20de%20Tom%C3%A1s%20L%C3%B3pez%2C%2011%2C%20Salamanca%2C%2028009%20Madrid!5e0!3m2!1ses!2ses!4v1620000000000!5m2!1ses!2ses" allowfullscreen="" loading="lazy"></iframe>
+                </div>
             </div>
         </div>
     </section>
