@@ -1063,207 +1063,6 @@ p {
     margin-right: 10px;
     font-size: 1.3rem;
 }
-
-/* Variables de color */
-:root {
-  --black: #0d0d0d;
-  --dark-gray: #1a1a1a;
-  --light-gray: #333;
-  --gold: #d4af37;
-  --gold-hover: #f5d072;
-}
-
-/* Estructura base del carrusel */
-.gallery-carousel {
-  position: relative;
-  max-width: 1400px;
-  margin: 3rem auto;
-  padding: 0 20px;
-}
-
-.carousel-container {
-  overflow: hidden;
-  border-radius: 8px;
-  background: var(--black);
-  position: relative;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-/* Pista del carrusel */
-.carousel-track {
-  display: flex;
-  transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-  height: 100%;
-}
-
-/* Slides individuales */
-.carousel-slide {
-  min-width: 100%;
-  position: relative;
-  flex-shrink: 0;
-  padding-bottom: 56.25%; /* Aspect ratio 16:9 por defecto */
-}
-
-.carousel-slide img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  background: var(--dark-gray);
-}
-
-/* Botones de navegación (estilo premium) */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: rgba(20, 20, 20, 0.8);
-  border: 2px solid var(--gold);
-  color: var(--gold);
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(8px);
-  opacity: 0.8;
-}
-
-.carousel-btn:hover {
-  opacity: 1;
-  background: rgba(255, 215, 0, 0.2);
-  color: var(--gold-hover);
-  border-color: var(--gold-hover);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.prev-btn {
-  left: 25px;
-}
-
-.next-btn {
-  right: 25px;
-}
-
-/* Indicadores de posición (estilo Netflix) */
-.carousel-indicators {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 10;
-}
-
-.carousel-indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.carousel-indicator.active {
-  background: var(--gold);
-  transform: scale(1.2);
-}
-
-/* Efecto de gradiente inferior (estilo Apple TV) */
-.carousel-slide::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40%;
-  background: linear-gradient(to bottom, 
-              transparent 0%, 
-              rgba(0, 0, 0, 0.7) 100%);
-  z-index: 2;
-}
-
-/* Diseño responsivo */
-@media (max-width: 1024px) {
-  .carousel-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .gallery-carousel {
-    padding: 0 10px;
-  }
-  
-  .carousel-slide {
-    padding-bottom: 75%; /* 4:3 para tablets */
-  }
-  
-  .carousel-btn {
-    width: 45px;
-    height: 45px;
-    font-size: 1.1rem;
-  }
-  
-  .carousel-indicators {
-    bottom: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-slide {
-    padding-bottom: 100%; /* 1:1 para móviles */
-  }
-  
-  .carousel-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-    opacity: 0.9;
-  }
-  
-  .carousel-slide::after {
-    height: 30%;
-  }
-  
-  .carousel-indicator {
-    width: 10px;
-    height: 10px;
-  }
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-  from { opacity: 0.7; }
-  to { opacity: 1; }
-}
-
-.carousel-slide {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-/* Efectos solo para desktop */
-@media (hover: hover) {
-  .carousel-btn {
-    opacity: 0;
-  }
-  
-  .carousel-container:hover .carousel-btn {
-    opacity: 0.9;
-  }
-}
 /* Responsive */
 @media (max-width: 768px) {
     .spotify-section {
@@ -1280,6 +1079,117 @@ p {
         border-width: 1px;
     }
     
+}
+
+/* Variables de color */
+:root {
+  --black: #000;
+  --dark-gray: #111;
+  --gold: #d4af37;
+}
+
+/* Estructura base - Mobile First */
+.gallery-carousel {
+  position: relative;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.carousel-container {
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--black);
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Pista del carrusel */
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-out;
+}
+
+/* Slides optimizados para móvil */
+.carousel-slide {
+  min-width: 100%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: var(--dark-gray);
+  object-fit: contain;
+  max-height: 70vh;
+}
+
+/* Botones de navegación minimalistas */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: var(--gold);
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  opacity: 0.9;
+}
+
+.carousel-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+/* Versión Desktop */
+@media (min-width: 768px) {
+  .gallery-carousel {
+    max-width: 1200px;
+    margin: 2.5rem auto;
+    padding: 0 20px;
+  }
+  
+  .carousel-container {
+    border-radius: 8px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  }
+  
+  .carousel-slide img {
+    max-height: 600px;
+  }
+  
+  .carousel-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    opacity: 0;
+  }
+  
+  .carousel-container:hover .carousel-btn {
+    opacity: 0.9;
+  }
+  
+  .carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: #f5d072;
+  }
 }
 
 /* Calculadora */
