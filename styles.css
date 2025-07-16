@@ -1080,35 +1080,51 @@ p {
     }
     
 }
-/* Contenedor principal del carrusel */
+/* Contenedor principal */
+.gallery-section {
+  padding: 20px 0;
+  overflow: hidden;
+}
+
 .gallery-carousel {
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px;
 }
 
-/* Contenedor de las imágenes */
+/* Área deslizable con scroll horizontal */
 .carousel-container {
-  overflow: hidden;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  display: flex;
   border-radius: 8px;
   border: 1px solid #d4af37;
   background: #000;
+  -webkit-overflow-scrolling: touch; /* Mejor comportamiento en iOS */
 }
 
-/* Pista del carrusel */
+/* Ocultar barras de scroll */
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Track de imágenes */
 .carousel-track {
   display: flex;
-  transition: transform 0.5s ease;
+  min-width: 100%;
 }
 
-/* Cada slide individual */
+/* Cada slide */
 .carousel-slide {
+  scroll-snap-align: start;
   min-width: 100%;
   flex-shrink: 0;
+  padding: 5px;
+  box-sizing: border-box;
 }
 
-/* Estilo para las imágenes */
+/* Estilo para imágenes */
 .carousel-slide img {
   width: 100%;
   height: auto;
@@ -1116,45 +1132,51 @@ p {
   display: block;
   object-fit: contain;
   background: #111;
+  border-radius: 4px;
 }
 
-/* Botones de navegación */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid #d4af37;
-  color: #d4af37;
-  border-radius: 50%;
-  font-size: 1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
+/* Efecto de movimiento al desplazar */
+.carousel-track {
+  transition: transform 0.3s ease-out;
 }
 
-.prev-btn {
-  left: 10px;
-}
-
-.next-btn {
-  right: 10px;
-}
-
-/* Versión para escritorio */
+/* Versión para escritorio - comportamiento diferente */
 @media (min-width: 768px) {
+  .carousel-container {
+    cursor: grab;
+    overflow-x: hidden; /* Desactivamos scroll en desktop */
+  }
+  
+  .carousel-container:active {
+    cursor: grabbing;
+  }
+  
   .carousel-slide img {
     max-height: 600px;
   }
   
-  .carousel-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
+  /* Efecto hover sutil */
+  .carousel-slide img:hover {
+    opacity: 0.9;
+  }
+}
+
+/* Indicador visual de que es deslizable (solo móviles) */
+@media (max-width: 767px) {
+  .carousel-container {
+    position: relative;
+  }
+  
+  .carousel-container::after {
+    content: "← Desliza →";
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #d4af37;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    z-index: 2;
   }
 }
 /* Calculadora */
