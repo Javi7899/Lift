@@ -168,234 +168,72 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Carrusel de fotos - Versión optimizada para móviles
-    const track = document.querySelector('.carousel-track');
-    if (track) {
-        const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-        const nextBtn = document.querySelector('.next-btn');
-        const prevBtn = document.querySelector('.prev-btn');
-        const indicatorsContainer = document.querySelector('.carousel-indicators') || document.createElement('div');
-        
-        // Configuración del carrusel
-        let currentIndex = 0;
-        const slideCount = slides.length;
-        let autoSlideInterval;
-        let isDragging = false;
-        let startPos = 0;
-        let currentTranslate = 0;
-        let prevTranslate = 0;
-        let animationID;
-        let touchMoved = false; // Para distinguir entre toque y deslizamiento
-        
-        // Optimización: Detectar si es móvil
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        
-        // Crear indicadores si no existen
-        if (!document.querySelector('.carousel-indicators')) {
-            indicatorsContainer.className = 'carousel-indicators';
-            slides.forEach((_, index) => {
-                const indicator = document.createElement('button');
-                indicator.className = 'carousel-indicator';
-                indicator.setAttribute('aria-label', `Ir a la diapositiva ${index + 1}`);
-                if (index === 0) indicator.classList.add('active');
-                indicator.addEventListener('click', () => goToSlide(index));
-                indicatorsContainer.appendChild(indicator);
-            });
-            document.querySelector('.gallery-carousel').appendChild(indicatorsContainer);
-        }
-        
-        const indicators = Array.from(document.querySelectorAll('.carousel-indicator'));
-        
-        // Funciones del carrusel
-        function updateCarousel() {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            
-            // Actualizar indicadores
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
-            });
-        }
-        
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % slideCount;
-            updateCarousel();
-        }
-        
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-            updateCarousel();
-        }
-        
-        function goToSlide(index) {
-            currentIndex = index;
-            updateCarousel();
-            resetAutoSlide();
-        }
-        
-        function startAutoSlide() {
-            // En móviles, reducimos el intervalo para mejor rendimiento
-            const interval = isMobile ? 7000 : 5000;
-            autoSlideInterval = setInterval(() => {
-                nextSlide();
-            }, interval);
-        }
-        
-        function resetAutoSlide() {
-            clearInterval(autoSlideInterval);
-            startAutoSlide();
-        }
-        
-        // Eventos de navegación optimizados para móviles
-        function handleNavigation(direction) {
-            if (direction === 'next') nextSlide();
-            else prevSlide();
-            resetAutoSlide();
-            
-            // Feedback táctil en móviles
-            if (isMobile) {
-                const btn = direction === 'next' ? nextBtn : prevBtn;
-                btn.classList.add('active-touch');
-                setTimeout(() => btn.classList.remove('active-touch'), 200);
-            }
-        }
-        
-        nextBtn.addEventListener('click', () => handleNavigation('next'));
-        prevBtn.addEventListener('click', () => handleNavigation('prev'));
-        
-        // Eventos táctiles optimizados para móviles
+// JavaScript para el carrusel
+document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    let currentIndex = 0;
+    
+    // Crear dots
+    slides.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (index === currentIndex) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+    
+    const dots = document.querySelectorAll('.dot');
+    
+    // Funciones del carrusel
+    function updateCarousel() {
         slides.forEach((slide, index) => {
-            slide.addEventListener('dragstart', (e) => e.preventDefault());
+            slide.classList.remove('active');
             
-            // Solo añadir eventos táctiles en móviles
-            if (isMobile) {
-                slide.addEventListener('touchstart', touchStart(index), { passive: true });
-                slide.addEventListener('touchend', touchEnd, { passive: true });
-                slide.addEventListener('touchmove', touchMove, { passive: false });
-                slide.addEventListener('click', (e) => {
-                    if (touchMoved) {
-                        e.preventDefault();
-                        touchMoved = false;
-                    }
-                }, { passive: true });
-            }
-        });
-        
-        // Eventos de ratón solo en desktop
-        if (!isMobile) {
-            track.addEventListener('mousedown', touchStart(0));
-            track.addEventListener('mouseup', touchEnd);
-            track.addEventListener('mouseleave', touchEnd);
-            track.addEventListener('mousemove', touchMove);
-        }
-        
-        function touchStart(index) {
-            return function(event) {
-                touchMoved = false;
-                currentIndex = index;
-                startPos = getPositionX(event);
-                isDragging = true;
-                animationID = requestAnimationFrame(animation);
-                track.style.cursor = 'grabbing';
-                track.style.transition = 'none';
-                clearInterval(autoSlideInterval);
-            }
-        }
-        
-        function touchEnd() {
-            if (!isDragging) return;
-            isDragging = false;
-            cancelAnimationFrame(animationID);
-            
-            const movedBy = currentTranslate - prevTranslate;
-            
-            // Umbral más alto para móviles para evitar cambios accidentales
-            const threshold = isMobile ? 50 : 100;
-            
-            if (movedBy < -threshold && currentIndex < slides.length - 1) {
-                currentIndex += 1;
-                touchMoved = true;
-            }
-            
-            if (movedBy > threshold && currentIndex > 0) {
-                currentIndex -= 1;
-                touchMoved = true;
-            }
-            
-            setPositionByIndex();
-            track.style.cursor = 'grab';
-            startAutoSlide();
-        }
-        
-        function touchMove(event) {
-            if (!isDragging) return;
-            touchMoved = true;
-            const currentPosition = getPositionX(event);
-            currentTranslate = prevTranslate + currentPosition - startPos;
-            
-            // Limitar el desplazamiento para mejor rendimiento
-            if (isMobile) {
-                const maxDrag = track.offsetWidth * 0.3;
-                if (Math.abs(currentTranslate - prevTranslate) > maxDrag) {
-                    currentTranslate = prevTranslate + (currentTranslate > prevTranslate ? maxDrag : -maxDrag);
-                }
-            }
-        }
-        
-        function getPositionX(event) {
-            return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-        }
-        
-        function animation() {
-            track.style.transform = `translateX(${currentTranslate}px)`;
-            if (isDragging) requestAnimationFrame(animation);
-        }
-        
-        function setPositionByIndex() {
-            currentTranslate = currentIndex * -track.offsetWidth;
-            prevTranslate = currentTranslate;
-            track.style.transform = `translateX(${currentTranslate}px)`;
-            track.style.transition = 'transform 0.3s ease-out'; // Transición más rápida para móviles
-            
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
-            });
-        }
-        
-        // Iniciar carrusel con configuración optimizada
-        updateCarousel();
-        
-        // Retrasar inicio del auto-slide para móviles
-        if (isMobile) {
-            setTimeout(startAutoSlide, 1000);
-        } else {
-            startAutoSlide();
-        }
-        
-        // Pausar al interactuar
-        track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-        track.addEventListener('mouseleave', () => {
-            if (!isDragging) startAutoSlide();
-        });
-        
-        // Manejar redimensionamiento con debounce para mejor rendimiento
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                setPositionByIndex();
-            }, 100);
-        });
-        
-        // Optimización: Liberar recursos cuando no es visible
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                clearInterval(autoSlideInterval);
+            // Efecto 3D de apilamiento
+            if (index === currentIndex) {
+                slide.classList.add('active');
+                slide.style.transform = 'translateZ(100px) scale(1.05)';
+            } else if (index < currentIndex) {
+                slide.style.transform = `translateZ(${-100 + (currentIndex - index) * 50}px) scale(${1 - (currentIndex - index) * 0.05})`;
             } else {
-                resetAutoSlide();
+                slide.style.transform = `translateZ(${-100 + (index - currentIndex) * 50}px) scale(${1 - (index - currentIndex) * 0.05})`;
             }
+        });
+        
+        // Actualizar dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
         });
     }
-
+    
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+    }
+    
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+    }
+    
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+    }
+    
+    // Event listeners
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    // Iniciar carrusel
+    updateCarousel();
+    
+    // Auto-avance opcional (descomenta si lo quieres)
+    // setInterval(nextSlide, 5000);
+});
     // Calculadora de IMC y PMC
     const genderSelect = document.getElementById('gender');
     const hipGroup = document.getElementById('hip-group');
