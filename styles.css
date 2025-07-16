@@ -1082,45 +1082,52 @@ p {
 }
 /* Contenedor principal */
 .gallery-section {
-  padding: 20px 0;
-  overflow: hidden;
+  padding: 40px 0;
+  background: #000;
 }
 
-.gallery-carousel {
-  position: relative;
+.container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* Área deslizable con scroll horizontal */
-.carousel-container {
+.section-title {
+  color: #d4af37;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+/* Carrusel */
+.gallery-carousel {
+  position: relative;
   width: 100%;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  display: flex;
+  overflow: hidden;
   border-radius: 8px;
   border: 1px solid #d4af37;
-  background: #000;
-  -webkit-overflow-scrolling: touch; /* Mejor comportamiento en iOS */
-}
-
-/* Ocultar barras de scroll */
-.carousel-container::-webkit-scrollbar {
-  display: none;
 }
 
 /* Track de imágenes */
 .carousel-track {
   display: flex;
-  min-width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* Suavizado en iOS */
+}
+
+/* Ocultar barras de scroll */
+.carousel-track::-webkit-scrollbar {
+  display: none;
 }
 
 /* Cada slide */
 .carousel-slide {
   scroll-snap-align: start;
+  flex: 0 0 100%;
   min-width: 100%;
-  flex-shrink: 0;
-  padding: 5px;
+  padding: 10px;
   box-sizing: border-box;
 }
 
@@ -1133,24 +1140,11 @@ p {
   object-fit: contain;
   background: #111;
   border-radius: 4px;
+  margin: 0 auto;
 }
 
-/* Efecto de movimiento al desplazar */
-.carousel-track {
-  transition: transform 0.3s ease-out;
-}
-
-/* Versión para escritorio - comportamiento diferente */
+/* Versión para escritorio */
 @media (min-width: 768px) {
-  .carousel-container {
-    cursor: grab;
-    overflow-x: hidden; /* Desactivamos scroll en desktop */
-  }
-  
-  .carousel-container:active {
-    cursor: grabbing;
-  }
-  
   .carousel-slide img {
     max-height: 600px;
   }
@@ -1163,20 +1157,17 @@ p {
 
 /* Indicador visual de que es deslizable (solo móviles) */
 @media (max-width: 767px) {
-  .carousel-container {
-    position: relative;
-  }
-  
-  .carousel-container::after {
+  .gallery-carousel::after {
     content: "← Desliza →";
     position: absolute;
-    bottom: 10px;
+    bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
     color: #d4af37;
     font-size: 0.8rem;
     opacity: 0.7;
     z-index: 2;
+    pointer-events: none;
   }
 }
 /* Calculadora */
