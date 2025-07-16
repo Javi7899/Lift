@@ -168,72 +168,73 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-// JavaScript para el carrusel
-document.addEventListener('DOMContentLoaded', function() {
-    const slides = document.querySelectorAll('.carousel-slide');
-    const dotsContainer = document.querySelector('.carousel-dots');
-    const prevBtn = document.querySelector('.carousel-prev');
-    const nextBtn = document.querySelector('.carousel-next');
-    let currentIndex = 0;
-    
-    // Crear dots
-    slides.forEach((_, index) => {
-        const dot = document.createElement('span');
-        dot.classList.add('dot');
-        if (index === currentIndex) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(index));
-        dotsContainer.appendChild(dot);
-    });
-    
-    const dots = document.querySelectorAll('.dot');
-    
-    // Funciones del carrusel
-    function updateCarousel() {
-        slides.forEach((slide, index) => {
-            slide.classList.remove('active');
-            
-            // Efecto 3D de apilamiento
-            if (index === currentIndex) {
-                slide.classList.add('active');
-                slide.style.transform = 'translateZ(100px) scale(1.05)';
-            } else if (index < currentIndex) {
-                slide.style.transform = `translateZ(${-100 + (currentIndex - index) * 50}px) scale(${1 - (currentIndex - index) * 0.05})`;
-            } else {
-                slide.style.transform = `translateZ(${-100 + (index - currentIndex) * 50}px) scale(${1 - (index - currentIndex) * 0.05})`;
-            }
-        });
+// Carrusel superpuesto para "Nuestro Centro" - Código corregido
+    const carouselContainer = document.querySelector('.stacked-carousel');
+    if (carouselContainer) {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dotsContainer = document.querySelector('.carousel-dots');
+        const prevBtn = document.querySelector('.carousel-prev');
+        const nextBtn = document.querySelector('.carousel-next');
+        let currentIndex = 0;
         
-        // Actualizar dots
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
-        });
+        // Solo inicializar si existen los elementos necesarios
+        if (slides.length && dotsContainer && prevBtn && nextBtn) {
+            // Crear dots
+            slides.forEach((_, index) => {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (index === currentIndex) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+            
+            const dots = document.querySelectorAll('.carousel-dots .dot');
+            
+            function updateCarousel() {
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('active');
+                    
+                    // Efecto 3D de apilamiento
+                    if (index === currentIndex) {
+                        slide.classList.add('active');
+                        slide.style.transform = 'translateZ(100px) scale(1.05)';
+                    } else if (index < currentIndex) {
+                        slide.style.transform = `translateZ(${-100 + (currentIndex - index) * 50}px) scale(${1 - (currentIndex - index) * 0.05})`;
+                    } else {
+                        slide.style.transform = `translateZ(${-100 + (index - currentIndex) * 50}px) scale(${1 - (index - currentIndex) * 0.05})`;
+                    }
+                });
+                
+                // Actualizar dots
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            function goToSlide(index) {
+                currentIndex = index;
+                updateCarousel();
+            }
+            
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateCarousel();
+            }
+            
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateCarousel();
+            }
+            
+            // Event listeners con verificación de existencia
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            // Iniciar carrusel
+            updateCarousel();
+        }
     }
-    
-    function goToSlide(index) {
-        currentIndex = index;
-        updateCarousel();
-    }
-    
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateCarousel();
-    }
-    
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateCarousel();
-    }
-    
-    // Event listeners
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
-    
-    // Iniciar carrusel
-    updateCarousel();
-    
-    // Auto-avance opcional (descomenta si lo quieres)
-    // setInterval(nextSlide, 5000);
-});
+
     // Calculadora de IMC y PMC
     const genderSelect = document.getElementById('gender');
     const hipGroup = document.getElementById('hip-group');
