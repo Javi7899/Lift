@@ -1080,164 +1080,83 @@ p {
     }
     
 }
-/* Variables de color mejoradas */
-:root {
-  --black: #0a0a0a;
-  --dark-gray: #1a1a1a;
-  --gold: #d4af37;
-  --gold-light: #f5d072;
-  --shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-}
-
-/* Estructura base con marco */
+/* Contenedor principal del carrusel */
 .gallery-carousel {
   position: relative;
-  width: 94%;
-  margin: 2rem auto;
-  padding: 12px;
-  background: var(--black);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(255, 215, 55, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
-/* Contenedor principal del carrusel */
+/* Contenedor de las imágenes */
 .carousel-container {
   overflow: hidden;
-  border-radius: 4px;
-  position: relative;
-  background: var(--dark-gray);
-}
-
-/* Pista del carrusel con transición horizontal */
-.carousel-track {
-  display: flex;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  height: 100%;
-}
-
-/* Slides con marco integrado */
-.carousel-slide {
-  min-width: 100%;
-  position: relative;
-  flex-shrink: 0;
-  padding: 8px;
-  box-sizing: border-box;
-}
-
-/* Contenedor de imagen con efecto de "passepartout" */
-.carousel-image-container {
-  height: 0;
-  padding-bottom: 56.25%; /* Relación 16:9 */
-  position: relative;
-  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #d4af37;
   background: #000;
 }
 
-.carousel-slide img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+/* Pista del carrusel */
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
 }
 
-/* Botones de navegación mejorados */
+/* Cada slide individual */
+.carousel-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+/* Estilo para las imágenes */
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  display: block;
+  object-fit: contain;
+  background: #111;
+}
+
+/* Botones de navegación */
 .carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #d4af37;
+  color: #d4af37;
   border-radius: 50%;
-  background: rgba(10, 10, 10, 0.8);
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
-  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
-  opacity: 0.9;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.carousel-btn:active {
-  transform: translateY(-50%) scale(0.95);
+  z-index: 10;
 }
 
 .prev-btn {
-  left: -10px;
+  left: 10px;
 }
 
 .next-btn {
-  right: -10px;
+  right: 10px;
 }
 
-/* Efecto hover para desktop */
+/* Versión para escritorio */
 @media (min-width: 768px) {
-  .gallery-carousel {
-    max-width: 1200px;
-    padding: 16px;
-  }
-  
-  .carousel-container {
-    border-radius: 6px;
-  }
-  
-  .carousel-slide {
-    padding: 12px;
+  .carousel-slide img {
+    max-height: 600px;
   }
   
   .carousel-btn {
     width: 50px;
     height: 50px;
-    font-size: 1.4rem;
-    opacity: 0;
-  }
-  
-  .carousel-container:hover .carousel-btn {
-    opacity: 0.9;
-  }
-  
-  .carousel-btn:hover {
-    background: rgba(212, 175, 55, 0.2);
-    color: var(--gold-light);
-    border-color: var(--gold-light);
+    font-size: 1.2rem;
   }
 }
-
-/* Versión móvil optimizada */
-@media (max-width: 480px) {
-  .gallery-carousel {
-    width: 96%;
-    padding: 8px;
-    margin: 1.5rem auto;
-  }
-  
-  .carousel-slide {
-    padding: 6px;
-  }
-  
-  .carousel-btn {
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
-  }
-  
-  .prev-btn {
-    left: -8px;
-  }
-  
-  .next-btn {
-    right: -8px;
-  }
-} 
 /* Calculadora */
 .calculator-section {
     padding: 80px 0;
