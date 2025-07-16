@@ -1080,60 +1080,80 @@ p {
     }
     
 }
-/* Variables de color */
+/* Variables de color mejoradas */
 :root {
-  --black: #000;
-  --dark-gray: #111;
+  --black: #0a0a0a;
+  --dark-gray: #1a1a1a;
   --gold: #d4af37;
+  --gold-light: #f5d072;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
 }
 
-/* Estructura base - Mobile First */
+/* Estructura base con marco */
 .gallery-carousel {
   position: relative;
-  width: 100%;
-  margin: 1.5rem 0;
+  width: 94%;
+  margin: 2rem auto;
+  padding: 12px;
+  background: var(--black);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 215, 55, 0.1);
 }
 
+/* Contenedor principal del carrusel */
 .carousel-container {
   overflow: hidden;
   border-radius: 4px;
-  background: var(--black);
   position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: var(--dark-gray);
 }
 
-/* Pista del carrusel */
+/* Pista del carrusel con transición horizontal */
 .carousel-track {
   display: flex;
-  transition: transform 0.5s ease-out;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  height: 100%;
 }
 
-/* Slides optimizados para móvil */
+/* Slides con marco integrado */
 .carousel-slide {
   min-width: 100%;
   position: relative;
   flex-shrink: 0;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/* Contenedor de imagen con efecto de "passepartout" */
+.carousel-image-container {
+  height: 0;
+  padding-bottom: 56.25%; /* Relación 16:9 */
+  position: relative;
+  overflow: hidden;
+  background: #000;
 }
 
 .carousel-slide img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  display: block;
-  background: var(--dark-gray);
+  height: 100%;
   object-fit: contain;
-  max-height: 70vh;
+  display: block;
 }
 
-/* Botones de navegación minimalistas */
+/* Botones de navegación mejorados */
 .carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.6);
-  border: none;
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid var(--gold);
   color: var(--gold);
   font-size: 1.2rem;
   cursor: pointer;
@@ -1141,8 +1161,10 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
   opacity: 0.9;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .carousel-btn:active {
@@ -1150,34 +1172,32 @@ p {
 }
 
 .prev-btn {
-  left: 10px;
+  left: -10px;
 }
 
 .next-btn {
-  right: 10px;
+  right: -10px;
 }
 
-/* Versión Desktop */
+/* Efecto hover para desktop */
 @media (min-width: 768px) {
   .gallery-carousel {
     max-width: 1200px;
-    margin: 2.5rem auto;
-    padding: 0 20px;
+    padding: 16px;
   }
   
   .carousel-container {
-    border-radius: 8px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
   }
   
-  .carousel-slide img {
-    max-height: 600px;
+  .carousel-slide {
+    padding: 12px;
   }
   
   .carousel-btn {
     width: 50px;
     height: 50px;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     opacity: 0;
   }
   
@@ -1186,10 +1206,38 @@ p {
   }
   
   .carousel-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
-    color: #f5d072;
+    background: rgba(212, 175, 55, 0.2);
+    color: var(--gold-light);
+    border-color: var(--gold-light);
   }
 }
+
+/* Versión móvil optimizada */
+@media (max-width: 480px) {
+  .gallery-carousel {
+    width: 96%;
+    padding: 8px;
+    margin: 1.5rem auto;
+  }
+  
+  .carousel-slide {
+    padding: 6px;
+  }
+  
+  .carousel-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+  
+  .prev-btn {
+    left: -8px;
+  }
+  
+  .next-btn {
+    right: -8px;
+  }
+} 
 /* Calculadora */
 .calculator-section {
     padding: 80px 0;
