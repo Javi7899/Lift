@@ -1080,76 +1080,103 @@ p {
     }
     
 }
-/* Contenedor principal */
-.gallery-section {
-  padding: 40px 0;
-  background: #000;
+/* CSS para el carrusel superpuesto */
+.stacked-carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 40px auto;
+    perspective: 1000px;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+.carousel-container {
+    position: relative;
+    height: 500px;
+    transform-style: preserve-3d;
 }
 
-.section-title {
-  color: #d4af37;
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 2rem;
+.carousel-slide {
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    top: 7.5%;
+    left: 7.5%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+    transform-origin: center;
+    border: 3px solid var(--gold);
 }
 
-/* CSS para la nueva galería */
-.gallery-section {
-    padding: 80px 0;
-    background-color: var(--dark-gray);
+.carousel-slide:nth-child(1) { transform: translateZ(-100px); }
+.carousel-slide:nth-child(2) { transform: translateZ(-50px); }
+.carousel-slide:nth-child(3) { transform: translateZ(0); }
+.carousel-slide:nth-child(4) { transform: translateZ(50px); }
+
+.carousel-slide.active {
+    transform: translateZ(100px) scale(1.05);
+    box-shadow: 0 30px 60px rgba(212, 175, 55, 0.3);
+    z-index: 10;
 }
 
-.gallery-showcase {
-    margin-top: 40px;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
     gap: 20px;
 }
 
-.gallery-item {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+.carousel-prev, .carousel-next {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
     transition: all 0.3s ease;
-    aspect-ratio: 1 / 1;
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.gallery-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+.carousel-prev:hover, .carousel-next:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.5);
 }
 
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s ease;
+.carousel-dots {
+    display: flex;
+    gap: 10px;
 }
 
-.gallery-item:hover img {
-    transform: scale(1.05);
+.carousel-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--light-gray);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-dots .dot.active {
+    background: var(--gold);
+    transform: scale(1.2);
 }
 
 @media (max-width: 768px) {
-    .gallery-grid {
-        grid-template-columns: 1fr 1fr;
+    .carousel-container {
+        height: 400px;
     }
-}
-
-@media (max-width: 480px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
+    
+    .carousel-slide {
+        width: 90%;
+        height: 90%;
+        top: 5%;
+        left: 5%;
     }
 }
 /* Calculadora */
