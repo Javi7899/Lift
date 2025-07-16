@@ -1099,76 +1099,58 @@ p {
   font-size: 2rem;
 }
 
-/* Carrusel */
-.gallery-carousel {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 8px;
-  border: 1px solid #d4af37;
+/* CSS para la nueva galería */
+.gallery-section {
+    padding: 80px 0;
+    background-color: var(--dark-gray);
 }
 
-/* Track de imágenes */
-.carousel-track {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch; /* Suavizado en iOS */
+.gallery-showcase {
+    margin-top: 40px;
 }
 
-/* Ocultar barras de scroll */
-.carousel-track::-webkit-scrollbar {
-  display: none;
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
-/* Cada slide */
-.carousel-slide {
-  scroll-snap-align: start;
-  flex: 0 0 100%;
-  min-width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
+.gallery-item {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    aspect-ratio: 1 / 1;
+    position: relative;
 }
 
-/* Estilo para imágenes */
-.carousel-slide img {
-  width: 100%;
-  height: auto;
-  max-height: 70vh;
-  display: block;
-  object-fit: contain;
-  background: #111;
-  border-radius: 4px;
-  margin: 0 auto;
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
 }
 
-/* Versión para escritorio */
-@media (min-width: 768px) {
-  .carousel-slide img {
-    max-height: 600px;
-  }
-  
-  /* Efecto hover sutil */
-  .carousel-slide img:hover {
-    opacity: 0.9;
-  }
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
 }
 
-/* Indicador visual de que es deslizable (solo móviles) */
-@media (max-width: 767px) {
-  .gallery-carousel::after {
-    content: "← Desliza →";
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #d4af37;
-    font-size: 0.8rem;
-    opacity: 0.7;
-    z-index: 2;
-    pointer-events: none;
-  }
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
 }
 /* Calculadora */
 .calculator-section {
