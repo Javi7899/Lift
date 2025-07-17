@@ -3,32 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIFT Studio | Entrenamiento y Readaptacion</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Favicon para la mayoría de navegadores -->
+    <title>LIFT Studio Madrid | Entrenamiento Personal y Readaptación Física</title>
+    <meta name="description" content="LIFT Studio Madrid - Entrenamiento personal 1 a 1, en grupo y online. Especialistas en readaptación física y prevención de lesiones con metodología científica.">
+    <meta name="keywords" content="entrenamiento personal Madrid, readaptación física, gimnasio personalizado, entrenador personal, pérdida de peso, ganancia muscular, recuperación lesiones">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-
-    <!-- Apple Touch Icon (iOS/Safari) -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-
-    <!-- Android Chrome -->
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#ffffff">
-    <!-- Favicon mejorado -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#d4af37">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#d4af37">
     <meta name="msapplication-TileColor" content="#121212">
-    <meta name="theme-color" content="#121212">
-    <!-- Microsoft Tiles (Windows) -->
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="mstile-144x144.png">
+    
+    <!-- Open Graph / Facebook (usando rutas relativas) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="LIFT Studio Madrid | Entrenamiento Personal y Readaptación Física">
+    <meta property="og:description" content="Entrenamiento personalizado en Madrid con enfoque científico. Especialistas en readaptación física y prevención de lesiones.">
+    <meta property="og:image" content="assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="LIFT Studio">
+    
+    <!-- Schema.org markup for Google (sin URL absoluta) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsActivityLocation",
+      "name": "LIFT Studio",
+      "image": "assets/logo.jpg",
+      "telephone": "+34615201626",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "C. de Tomás López, 11",
+        "addressLocality": "Madrid",
+        "postalCode": "28009",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 40.4264844,
+        "longitude": -3.6720385
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "07:00",
+        "closes": "21:00"
+      },
+      "priceRange": "$$",
+      "sameAs": [
+        "https://www.instagram.com/liftstudio.1",
+        "https://m.facebook.com/ar.motionhealth/"
+      ]
+    }
+    </script>
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="assets/ALEX.PNG" as="image">
+    <link rel="preload" href="assets/SERVICIO_1.JPG" as="image">
+    <link rel="preload" href="assets/SERVICIO_2.JPG" as="image">
+    
+    <!-- Preload fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"></noscript>
 </head>
+
 <body>
     <header class="navbar">
         <div class="navbar-container">
