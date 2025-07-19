@@ -344,6 +344,79 @@ p {
 .card-buttons .btn:first-child {
     margin-right: 10px;
 }
+/* Contenedor principal */
+.services-intro {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    padding: 0 1.5rem;
+}
+
+/* Texto introductorio */
+.intro-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.9);
+    padding: 1.5rem;
+    background: rgba(30, 30, 30, 0.7);
+    border-radius: 12px;
+    position: relative;
+    border-left: 4px solid var(--gold);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* Decoración */
+.intro-decoration {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 1.5rem 0;
+    opacity: 0.6;
+}
+
+/* Icono */
+.intro-icon {
+    font-size: 1.5rem;
+    float: left;
+    margin-right: 15px;
+    color: var(--gold);
+    transform: translateY(5px);
+}
+
+/* Efectos hover */
+.intro-text:hover {
+    background: rgba(40, 40, 40, 0.8);
+    border-left-width: 6px;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    .intro-text {
+        font-size: 1.15rem;
+        padding: 2rem;
+    }
+    
+    .intro-icon {
+        font-size: 1.8rem;
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .intro-text {
+        font-size: 1rem;
+        padding: 1.2rem;
+        text-align: left;
+    }
+    
+    .services-intro {
+        padding: 0 1rem;
+    }
+}
 
 /* Features */
 .features {
